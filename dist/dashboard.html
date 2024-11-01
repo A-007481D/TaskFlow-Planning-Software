@@ -72,7 +72,7 @@
 
         <div class="flex space-x-4">
           <div class="flex-1">
-            <label class="ml-1">Name</label>
+            <label class="ml-1">Title</label>
             <input id="taskTitle" class="rounded-lg px-3 py-2 h-12 w-full bg-white-200" type="text"
               placeholder="Task title">
           </div>
@@ -80,9 +80,9 @@
             <label class="ml-1">Status</label>
             <select id="taskStatus" class="rounded-md px-3 py-2 h-12 w-full">
               <option>Select Status</option>
-              <option>To Do</option>
-              <option>In Progress</option>
-              <option>Done</option>
+              <option id="ToDo">To Do</option>
+              <option id="InProgress">In Progress</option>
+              <option id="Done">Done</option>
             </select>
           </div>
         </div>
@@ -90,17 +90,17 @@
         <div class="flex space-x-4">
           <div class="flex-1">
             <label class="ml-1">Priority</label>
-            <select class="rounded-lg px-3 py-2 h-12 w-full">
+            <select id="taskPriority" class="rounded-lg px-3 py-2 h-12 w-full">
               <option value="">Set Priority</option>
-              <option class="text-white bg-red-600">P1</option>
-              <option class="text-white bg-yellow-600">P2</option>
+              <option id="P1" class="text-white bg-red-600">P1</option>
+              <option id="P2" class="text-white bg-yellow-600">P2</option>
               <!-- <option class="text-white bg-yellow-400">P3</option> -->
-              <option class="text-white bg-green-500">P3</option>
+              <option id="P3" class="text-white bg-green-500">P3</option>
             </select>
           </div>
           <div class="flex-1">
             <label class="ml-1">Deadline</label>
-            <input class="rounded-md px-3 py-2 h-12 w-full" type="datetime-local">
+            <input id="TaskDeadline" class="rounded-md px-3 py-2 h-12 w-full" type="datetime-local">
           </div>
         </div>
 
@@ -129,53 +129,16 @@
       <div class=" h-full grid grid-cols-3 gap-6 mt-10">
 
         <!-- To Do Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4 ">
+        <div class="bg-white rounded-lg shadow-lg p-4 w-96 ">
           <h2 class=" flex justify-between text-xl font-semibold mb-4"> <span>To Do</span>
             <span>2</span>
           </h2>
           <div class="space-y-4">
 
-            <div id="todoColumn" class="space-y-4 h-96 overflow-y-auto">
-              <div class="bg-blue-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
-                <h3 class="font-medium text-blue-800 ">Task 1</h3>
-                <p class="text-sm text-blue-700">Description for Task 1</p>
-              </div>
-
-
-
-
-              <div class="container w-96 bg-blue-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
-                <h3 class="font-medium text-blue-800">Task 5</h3>
-                <p class="text-sm text-blue-700"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo
-                  possimus amet ex ipsum vitae modi voluptatibus optio cupiditate libero!
-                </p>
-                <div class="flex justify-between space-x-2 mt-3">
-                  <button
-                    class="bg-red-500 rounded-2xl w-11 ">P1
-                  </button>
-
-                  <div>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="container w-96 bg-blue-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
-                <h3 class="font-medium text-blue-800">Task 5</h3>
-                <p class="text-sm text-blue-700"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo
-                  possimus amet ex ipsum vitae modi voluptatibus optio cupiditate libero!
-                </p>
-                <div class="flex justify-between space-x-2 mt-3">
-                  <button
-                    class="bg-red-500 rounded-2xl w-11 ">P1
-                  </button>
-
-                  <div>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
-                  </div>
-                </div>
-              </div>
+            <div id="todoTasks" class="space-y-4 h-96 overflow-y-auto">
+            
+              
+   
 
 
 
@@ -197,9 +160,9 @@
             <span>0</span>
           </h2>
           <div class="space-y-4">
-            <div class="space-y-4 h-96 overflow-y-auto">
+            <div id="inProgressTasks" class="space-y-4 h-96 overflow-y-auto">
 
-              <div class="bg-yellow-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+              <!-- <div class="bg-yellow-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-yellow-800">Task 3</h3>
                 <p class="text-sm text-yellow-700">Description for Task 3</p>
                 <div class="flex justify-between space-x-2 mt-3">
@@ -212,34 +175,9 @@
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="bg-yellow-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
-                <h3 class="font-medium text-yellow-800">Task 3</h3>
-                <p class="text-sm text-yellow-700">Description for Task 3</p>
-                <div class="flex justify-between space-x-2 mt-3">
-                  <button
-                    class="bg-yellow-500 rounded-2xl w-11 ">P2
-                  </button>
-                  <div>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-yellow-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
-                <h3 class="font-medium text-yellow-800">Task 3</h3>
-                <p class="text-sm text-yellow-700">Description for Task 3 lorem20</p>
-                <div class="flex justify-between space-x-2 mt-3">
-                  <button
-                    class="bg-red-500 rounded-2xl w-11 ">P1
-                  </button>
-                  <div>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
-                  </div>
-                </div>
-              </div>
+         
               
               
 
@@ -260,12 +198,9 @@
             <span>14</span>
           </h2>
           <div class="space-y-4">
-            <div class="space-y-4 h-96 overflow-y-auto">
-              <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
-                <h3 class="font-medium text-green-800">Task 4</h3>
-                <p class="text-sm text-green-700">Description for Task 4</p>
-              </div>
-              <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+            <div id="doneTasks" class="space-y-4 h-96 overflow-y-auto">
+            
+              <!-- <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-green-800">Task 4</h3>
                 <p class="text-sm text-green-700">Description for Task 4</p>
                 <div class="flex justify-between space-x-2 mt-3">
@@ -277,8 +212,10 @@
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
                   </div>
                 </div>                
-              </div>
-              <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+              </div> -->
+
+
+              <!-- <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-green-800">Task 4</h3>
                 <p class="text-sm text-green-700">Description for Task 4</p>
                 <div class="flex justify-between space-x-2 mt-3">
@@ -290,19 +227,19 @@
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
                   </div>
                 </div>
-              </div>
-              <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+              </div> -->
+              <!-- <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-green-800">Task 4</h3>
                 <p class="text-sm text-green-700">Description for Task 4</p>
-              </div>
-              <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+              </div> -->
+              <!-- <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-green-800">Task 4</h3>
                 <p class="text-sm text-green-700">Description for Task 4</p>
-              </div>
-              <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+              </div> -->
+              <!-- <div class="bg-green-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-green-800">Task 4</h3>
                 <p class="text-sm text-green-700">Description for Task 4</p>
-              </div>
+              </div> -->
             </div>
 
             <button class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"><img
