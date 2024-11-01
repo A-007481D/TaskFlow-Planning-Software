@@ -7,8 +7,12 @@
   <!-- <link rel="stylesheet" href="css/output.css"> -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet"> -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
   <title>Dashboard | TaskFlow</title>
+  <style>
+    .custom-width {
+      width: 26rem;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-300 h-screen">
@@ -129,9 +133,9 @@
       <div class=" h-full grid grid-cols-3 gap-6 mt-10">
 
         <!-- To Do Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4 w-96 ">
+        <div class="bg-white rounded-lg shadow-lg p-4 custom-width ">
           <h2 class=" flex justify-between text-xl font-semibold mb-4"> <span>To Do</span>
-            <span>2</span>
+            <span id="todoCount">0</span>
           </h2>
           <div class="space-y-4">
 
@@ -141,7 +145,7 @@
 
             </div>
 
-
+          
 
 
             <button
@@ -151,15 +155,15 @@
         </div>
 
         <!-- In Progress Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4">
+        <div class="bg-white rounded-lg shadow-lg p-4 custom-width ">
           <h2 class="text-xl font-semibold mb-4">
             <span>In Progresss</span>
-            <span>0</span>
+            <span id="inProgresscount">0</span>
           </h2>
           <div class="space-y-4">
             <div id="inProgressTasks" class="space-y-4 h-96 overflow-y-auto">
 
-              <div class="bg-yellow-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
+              <!-- <div class="bg-yellow-100 rounded-lg p-4 shadow cursor-pointer" draggable="true">
                 <h3 class="font-medium text-yellow-800">Task 3</h3>
                 <p class="text-sm text-yellow-700">Description for Task 3</p>
                 <div class="flex justify-between space-x-2 mt-3">
@@ -172,7 +176,7 @@
                     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
 
@@ -189,10 +193,10 @@
         </div>
 
         <!-- Done Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4">
+        <div class="bg-white rounded-lg shadow-lg p-4 custom-width">
           <h2 class="text-xl font-semibold mb-4">
             <span>Done</span>
-            <span>14</span>
+            <span id="doneCount">0</span>
           </h2>
           <div class="space-y-4">
             <div id="doneTasks" class="space-y-4 h-96 overflow-y-auto">

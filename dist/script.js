@@ -67,22 +67,21 @@ function render() {
         const div = document.createElement("div")
         div.classList.add(getBGcolor(task.status), "rounded-lg", "p-4", "shadow", "cursor-pointer");
         div.draggable = "true"
+        div.setAttribute("data-id", task.id);
+
 
         div.innerHTML = `
-                <h3 class="font-medium text-black-800">${task.title}</h3>
-                <p class="text-sm text-gray-700">${task.description}</p>
-                <div class="flex justify-between space-x-2 mt-3">
-                  <button
-                    class=" rounded-2xl w-11 ${getPriorityColor(task.priority)}">${task.priority}
-                  </button>
-                    <div class="text-gray-400 font-light">${task.deadline}</div>
-
-                  <div>
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
-                  </div>
-                </div>            
-        `
+        
+            <h3 class="font-medium text-black-800">${task.title}</h3>
+            <p class="text-sm text-gray-700">${task.description}</p>
+            <div class="flex justify-between space-x-2 mt-3">
+                <button class="rounded-2xl w-11 ${getPriorityColor(task.priority)}">${task.priority}</button>
+                <div class="text-gray-400 font-light">${task.deadline}</div>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
+                <button onclick="deleteTask(this)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
+            </div>
+                    
+        `;
 
         let status = parseInt(task.status);
         if (status === 1) {
@@ -98,6 +97,24 @@ function render() {
     });
 
 }
+
+function deleteTask(element){
+    const taskDiv = element.closest("div[data-id");
+    const taskId = parseInt(taskDiv.getAttribute('data-id'));
+    taskArray = taskArray.filter(task => task.id !== taskId);
+    render(); 
+}
+
+// function deleteTask(element) {
+//     let div = element.parentNode;
+//     div.remove();
+// }
+
+
+
+
+
+
 
 function getPriorityColor(priority) {
     switch (priority) {
@@ -128,13 +145,13 @@ function getBGcolor(status) {
 
 
 
+
 // to empty the form after submit
 // document.getElementById('taskTitle').value = '';
 // document.getElementById('taskStatus').value = '';
 // document.getElementById('taskPriority').value = '';
 // document.getElementById('TaskDeadline').value = '';
 // document.getElementById('taskDescription').value = '';
-
 
 
 
