@@ -68,7 +68,8 @@ function render() {
     doneTasksContainer.innerHTML = "";
 
     let todoCount = 0;
-    let inProgressCount
+    let inProgressCount = 0;
+    let doneCount = 0;
 
     taskArray.forEach(task => {
         const div = document.createElement("div")
@@ -79,7 +80,7 @@ function render() {
 
         div.innerHTML = `
         
-            <h3 class="font-medium text-black-800">${task.title}</h3>
+            <h3 class="font-medium text-black-800 cursor-pointer hover:underline hover:text-blue-800 onclick="openModal(${task.id})">${task.title}</h3>
             <p class="text-sm text-gray-700">${task.description}</p>
             <div class="flex justify-between space-x-2 mt-3">
                 <button class="rounded-2xl w-11 ${getPriorityColor(task.priority)}">${task.priority}</button>
@@ -93,17 +94,25 @@ function render() {
         let status = parseInt(task.status);
         if (status === 1) {
             todoTasksContainer.appendChild(div);
+            todoCount++;
         } else if (status === 2) {
             inProgressContainer.appendChild(div);
+            inProgressCount++;
         } else if (status === 3) {
             doneTasksContainer.appendChild(div);
+            doneCount++;
         } else {
             todoTasksContainer.appendChild(div);
+        
         }
 
     });
 
+    document.getElementById('todoCount').textContent = todoCount;
+    document.getElementById('inProgresscount').textContent = inProgressCount;
+    document.getElementById('doneCount').textContent = doneCount;
 }
+
 
 function deleteTask(element){
     const taskDiv = element.closest("div[data-id");
