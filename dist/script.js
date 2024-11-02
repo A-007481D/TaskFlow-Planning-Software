@@ -28,10 +28,14 @@ closeModalButton.addEventListener('click', () => {
 
 let taskArray = [];
 
-
-
 const createTask = document.getElementById("createTask");
 createTask.onclick = function () {
+
+    if (!taskTitle.value || !taskStatus.value || !taskPriority.value) {
+        alert("Please fill in the task title, status, and priority.");
+        return;
+    }
+
     const task = {
         id: Date.now(),
         title: taskTitle.value,
@@ -39,11 +43,11 @@ createTask.onclick = function () {
         status: taskStatus.value,
         deadline: taskDeadline.value,
         priority: taskPriority.value,
-
-    }
+    };
 
     taskArray.push(task);
     render();
+
     taskTitle.value = "";
     taskStatus.value = "";
     taskPriority.value = "";
@@ -51,8 +55,8 @@ createTask.onclick = function () {
     taskDeadline.value = "";
     addModal.classList.add("hidden");
     modalOverlay.classList.add("hidden");
-
 };
+
 
 function render() {
     const todoTasksContainer = document.getElementById('todoTasks');
@@ -62,6 +66,9 @@ function render() {
     todoTasksContainer.innerHTML = "";
     inProgressContainer.innerHTML = "";
     doneTasksContainer.innerHTML = "";
+
+    let todoCount = 0;
+    let inProgressCount
 
     taskArray.forEach(task => {
         const div = document.createElement("div")
