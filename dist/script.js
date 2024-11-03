@@ -107,7 +107,7 @@ function render() {
 
     taskArray.forEach(task => {
         const div = document.createElement("div") 
-        div.classList.add(getBGcolor(task.status),getBGHovercolor(task.status), "rounded-lg", "p-4", "shadow", "cursor-pointer");
+        div.classList.add(getBGcolor(task.status),getBGHovercolor(task.status), "rounded-lg", "p-4", "shadow", "cursor-pointer", "fade-in");
         div.draggable = "true"
         div.setAttribute("data-id", task.id);
 

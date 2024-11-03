@@ -7,7 +7,9 @@
   <!-- <link rel="stylesheet" href="css/output.css"> -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet"> -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/animation.css">
   <title>Dashboard | TaskFlow</title>
+
   <style>
     .custom-width {
       width: 26rem;
@@ -25,7 +27,7 @@
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><Table>TaskFlow</Table></span>
   </a>
   <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 hidden sm:inline-block focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
       <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -61,12 +63,12 @@
   <h1 class="text-2xl font-bold text-center mt-20">Tasks Board</h1>
 
 
-  <div class="flex justify-center space-x-5 my-5">
+  <div class="flex justify-center flex-wrap gap-5 space-x-5 my-5">
     <button id="openModal" class="bg-blue-600 hover:bg-blue-700 font-bold px-3 rounded-md text-white ">Add Task</button>
 
-    <input class="rounded-lg px-3 w-96 h-12" type="search" placeholder="Search for a task..." id="searchbar">
+    <input class="rounded-lg px-3 w-96 h-12" type="search" placeholder="Search for a task..." id="searchbar" style="margin: 0 !important;">
   </div>
-  <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50  hidden flex items-center justify-center">
+  <div id="modalOverlay" class="fixed inset-0 bg-black z-50 bg-opacity-50  hidden flex items-center justify-center">
 
     <!-- Modal -->
     <div id="modal" class="container z-50 mx-auto p-6 rounded-md bg-gray-100 font-bold w-full sm:w-2/3 lg:w-1/3">
@@ -187,14 +189,14 @@
     </div>
   </div>
 
-  <div class=" flex justify-center mx-8 mr-8">
+  <div class=" flex mx-8 mr-8">
 
     <!-- Tasks Board -->
-    <div class=" h-96">
-      <div class=" h-full grid grid-cols-3 gap-6 mt-10">
+    <div class=" h-96 w-full">
+      <div class=" h-full grid-cols-1 grid lg:grid-cols-3 gap-6 mt-10">
 
         <!-- To Do Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4 custom-width ">
+        <div class="bg-white rounded-lg shadow-lg p-4">
           <h2 class=" flex justify-between text-xl font-semibold mb-4"> <span>To Do</span>
             <span id="todoCount">0</span>
           </h2>
@@ -216,7 +218,7 @@
         </div>
 
         <!-- In Progress Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4 custom-width ">
+        <div class="bg-white rounded-lg shadow-lg p-4">
           <h2 class="text-xl font-semibold mb-4">
             <span>In Progresss</span>
             <span id="inProgresscount">0</span>
@@ -254,7 +256,7 @@
         </div>
 
         <!-- Done Column -->
-        <div class="bg-white rounded-lg shadow-lg p-4 custom-width">
+        <div class="bg-white rounded-lg shadow-lg p-4">
           <h2 class="text-xl font-semibold mb-4">
             <span>Done</span>
             <span id="doneCount">0</span>
