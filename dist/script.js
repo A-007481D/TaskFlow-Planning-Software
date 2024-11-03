@@ -34,6 +34,18 @@ createTask.onclick = function () {
     if (!taskTitle.value || !taskStatus.value || !taskPriority.value) {
         alert("Please fill in the task title, status, and priority.");
         return;
+    } else {
+        let selectedDate = new Date(taskDeadline.value).getTime() 
+        let currentDate = new Date().getTime()
+
+        let diff = currentDate - selectedDate
+        if (diff > 0) {
+            alert("Please select a correct date")
+            return;
+
+
+        }
+
     }
 
     const task = {
@@ -85,7 +97,7 @@ function render() {
             <div class="flex justify-between space-x-2 mt-3">
                 <button class="rounded-2xl w-11 ${getPriorityColor(task.priority)}">${task.priority}</button>
                 <div class="text-gray-400 font-light">${task.deadline}</div>
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
+                <button onclick="editTask(this)" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded">Edit</button>
                 <button onclick="deleteTask(this)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded">Delete</button>
             </div>
                     
@@ -121,6 +133,17 @@ function deleteTask(element){
     render(); 
 }
 
+
+
+function editTask(element)
+{
+    const taskDiv = element.closest("div[data-id");
+    const taskId = parseInt(taskDiv.getAttribute('data-id'));
+    const index= taskArray.findIndex(task => task.id === taskId)
+    taskArray[index].title="yyyyyyyyyyyy";  
+    // taskArray = taskArray.filter(task => task.id !== taskId);
+    render();  
+}
 // function deleteTask(element) {
 //     let div = element.parentNode;
 //     div.remove();
