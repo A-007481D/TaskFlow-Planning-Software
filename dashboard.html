@@ -7,13 +7,38 @@
   <!-- <link rel="stylesheet" href="css/output.css"> -->
   <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet"> -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/dist/css/animation.css">
+  <!-- <link rel="stylesheet" href="/dist/css/animation.css"> -->
   <title>Dashboard | TaskFlow</title>
 
   <style>
     .custom-width {
       width: 26rem;
     }
+    @keyframes fadein {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadein 0.5s forwards;
+}
+
+
+
+.fade-out {
+    animation: fadeout 0.4s forwards;
+}
+
+@keyframes fadeout {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
   </style>
 </head>
 
