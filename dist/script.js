@@ -2,15 +2,32 @@
 // modal open & close
 const openModalButton = document.getElementById('openModal');
 const modalOverlay = document.getElementById('modalOverlay');
+const editModalOverlay = document.getElementById('editModalOverlay');
 const closeModalButton = document.getElementById('closeModal');
-let addModal = document.getElementById("modal");
 
+let addModal = document.getElementById("modal");
+let editModal = document.getElementById("editModal");
+
+// create inputz
 let taskTitle = document.getElementById('taskTitle');
 let taskStatus = document.getElementById('taskStatus');
 let taskPriority = document.getElementById('taskPriority');
 let taskDeadline = document.getElementById('TaskDeadline');
 let taskDescription = document.getElementById('taskDescription');
 
+
+// edit inputz
+let editTaskTitle = document.getElementById('editTaskTitle');
+let editTaskStatus = document.getElementById('editTaskStatus');
+let editTaskPriority = document.getElementById('editTaskPriority');
+let editTaskDeadline = document.getElementById('editTaskDeadline');
+let editTaskDescription = document.getElementById('editTaskDescription');
+
+function openeditModalOverlay() {
+    editModalOverlay.classList.remove('hidden');
+    editModal.classList.remove("hidden");
+    return;
+}
 
 openModalButton.addEventListener('click', () => {
     modalOverlay.classList.remove('hidden');
@@ -19,6 +36,11 @@ openModalButton.addEventListener('click', () => {
 
 closeModalButton.addEventListener('click', () => {
     modalOverlay.classList.add('hidden');
+    taskTitle.value = "";
+    taskStatus.value = "";
+    taskPriority.value = "";
+    taskDescription.value = "";
+    taskDeadline.value = "";
 });
 
 
@@ -34,17 +56,17 @@ createTask.onclick = function () {
     if (!taskTitle.value || !taskStatus.value || !taskPriority.value) {
         alert("Please fill in the task title, status, and priority.");
         return;
-    } else {
-        let selectedDate = new Date(taskDeadline.value).getTime() 
-        let currentDate = new Date().getTime()
+    // } else {
+    //     let selectedDate = new Date(taskDeadline.value).getTime() 
+    //     let currentDate = new Date().getTime()
 
-        let diff = currentDate - selectedDate
-        if (diff > 0) {
-            alert("Please select a correct date")
-            return;
+    //     let diff = currentDate - selectedDate
+    //     if (diff > 0) {
+    //         alert("Please select a correct date")
+    //         return;
 
 
-        }
+    //     }
 
     }
 
@@ -92,7 +114,7 @@ function render() {
 
         div.innerHTML = `
         
-            <h3 class="font-medium text-black-800 cursor-pointer hover:underline hover:text-blue-800 onclick="openModal(${task.id})">${task.title}</h3>
+            <h3 class="font-medium text-black-800 cursor-pointer hover:underline hover:text-blue-800 onclick="openeditModalOverlay()">${task.title}</h3>
             <p class="text-sm text-gray-700">${task.description}</p>
             <div class="flex justify-between space-x-2 mt-3">
                 <button class="rounded-2xl w-11 ${getPriorityColor(task.priority)}">${task.priority}</button>
@@ -139,11 +161,49 @@ function editTask(element)
 {
     const taskDiv = element.closest("div[data-id");
     const taskId = parseInt(taskDiv.getAttribute('data-id'));
+    openeditModalOverlay();
+
     const index= taskArray.findIndex(task => task.id === taskId)
-    taskArray[index].title="yyyyyyyyyyyy";  
-    // taskArray = taskArray.filter(task => task.id !== taskId);
-    render();  
+     editTaskTitle.value = taskArray[index].title;
+     editTaskStatus.value = taskArray[index].status; 
+     editTaskPriority.value = taskArray[index].priority;
+     editTaskDeadline.value = taskArray[index].deadline;
+     editTaskDescription.value = taskArray[index].description;
+    
+     document.getElementById('submitChange').onclick = function (){ update(index)};
+    
+    
+     
 }
+
+    function update(index){
+        if (!editTaskTitle.value || !editTaskStatus.value || !editTaskPriority.value) {
+            alert("Please fill in the task title, status, and priority.");
+            return;
+        // } else {
+        //     let selectedDate = new Date(taskDeadline.value).getTime() 
+        //     let currentDate = new Date().getTime()
+    
+        //     let diff = currentDate - selectedDate
+        //     if (diff > 0) {
+        //         alert("Please select a correct date")
+        //         return;
+    
+    
+        //     }
+    
+        }
+    
+        taskArray[index].title =editTaskTitle.value ;
+        taskArray[index].status =editTaskStatus.value ; 
+        taskArray[index].priority =editTaskPriority.value ;
+        taskArray[index].deadline =editTaskDeadline.value ;
+        taskArray[index].description =editTaskDescription.value ;
+        editModalOverlay.classList.add('hidden');
+        editModal.classList.add("hidden");
+        render();
+    }
+
 // function deleteTask(element) {
 //     let div = element.parentNode;
 //     div.remove();
